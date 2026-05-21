@@ -11,6 +11,7 @@
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as ProductsRouteImport } from './routes/products'
 import { Route as OffersRouteImport } from './routes/offers'
+import { Route as FaqRouteImport } from './routes/faq'
 import { Route as ContactRouteImport } from './routes/contact'
 import { Route as CartRouteImport } from './routes/cart'
 import { Route as AboutRouteImport } from './routes/about'
@@ -25,6 +26,11 @@ const ProductsRoute = ProductsRouteImport.update({
 const OffersRoute = OffersRouteImport.update({
   id: '/offers',
   path: '/offers',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const FaqRoute = FaqRouteImport.update({
+  id: '/faq',
+  path: '/faq',
   getParentRoute: () => rootRouteImport,
 } as any)
 const ContactRoute = ContactRouteImport.update({
@@ -58,6 +64,7 @@ export interface FileRoutesByFullPath {
   '/about': typeof AboutRoute
   '/cart': typeof CartRoute
   '/contact': typeof ContactRoute
+  '/faq': typeof FaqRoute
   '/offers': typeof OffersRoute
   '/products': typeof ProductsRouteWithChildren
   '/products/$slug': typeof ProductsSlugRoute
@@ -67,6 +74,7 @@ export interface FileRoutesByTo {
   '/about': typeof AboutRoute
   '/cart': typeof CartRoute
   '/contact': typeof ContactRoute
+  '/faq': typeof FaqRoute
   '/offers': typeof OffersRoute
   '/products': typeof ProductsRouteWithChildren
   '/products/$slug': typeof ProductsSlugRoute
@@ -77,6 +85,7 @@ export interface FileRoutesById {
   '/about': typeof AboutRoute
   '/cart': typeof CartRoute
   '/contact': typeof ContactRoute
+  '/faq': typeof FaqRoute
   '/offers': typeof OffersRoute
   '/products': typeof ProductsRouteWithChildren
   '/products/$slug': typeof ProductsSlugRoute
@@ -88,6 +97,7 @@ export interface FileRouteTypes {
     | '/about'
     | '/cart'
     | '/contact'
+    | '/faq'
     | '/offers'
     | '/products'
     | '/products/$slug'
@@ -97,6 +107,7 @@ export interface FileRouteTypes {
     | '/about'
     | '/cart'
     | '/contact'
+    | '/faq'
     | '/offers'
     | '/products'
     | '/products/$slug'
@@ -106,6 +117,7 @@ export interface FileRouteTypes {
     | '/about'
     | '/cart'
     | '/contact'
+    | '/faq'
     | '/offers'
     | '/products'
     | '/products/$slug'
@@ -116,6 +128,7 @@ export interface RootRouteChildren {
   AboutRoute: typeof AboutRoute
   CartRoute: typeof CartRoute
   ContactRoute: typeof ContactRoute
+  FaqRoute: typeof FaqRoute
   OffersRoute: typeof OffersRoute
   ProductsRoute: typeof ProductsRouteWithChildren
 }
@@ -134,6 +147,13 @@ declare module '@tanstack/react-router' {
       path: '/offers'
       fullPath: '/offers'
       preLoaderRoute: typeof OffersRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/faq': {
+      id: '/faq'
+      path: '/faq'
+      fullPath: '/faq'
+      preLoaderRoute: typeof FaqRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/contact': {
@@ -191,6 +211,7 @@ const rootRouteChildren: RootRouteChildren = {
   AboutRoute: AboutRoute,
   CartRoute: CartRoute,
   ContactRoute: ContactRoute,
+  FaqRoute: FaqRoute,
   OffersRoute: OffersRoute,
   ProductsRoute: ProductsRouteWithChildren,
 }
