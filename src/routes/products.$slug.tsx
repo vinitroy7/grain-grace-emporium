@@ -3,7 +3,7 @@ import { Check, ShoppingBag, Star, Truck } from "lucide-react";
 import { useState } from "react";
 import { ProductCard } from "@/components/ProductCard";
 import { useCart } from "@/lib/cart";
-import { formatINR, getProduct, PRODUCTS, waLink } from "@/lib/products";
+import { formatINR, getProduct, PRODUCTS, waLink, type PackSize } from "@/lib/products";
 
 export const Route = createFileRoute("/products/$slug")({
   loader: ({ params }) => {
@@ -44,7 +44,7 @@ export const Route = createFileRoute("/products/$slug")({
 function ProductPage() {
   const { product } = Route.useLoaderData();
   const { add } = useCart();
-  const [pack, setPack] = useState(product.packs[0]);
+  const [pack, setPack] = useState<PackSize>(product.packs[0]);
   const [qty, setQty] = useState(1);
   const [added, setAdded] = useState(false);
 
@@ -176,7 +176,7 @@ function ProductPage() {
           <div className="mt-7 rounded-2xl border border-border bg-card p-6">
             <h3 className="font-serif text-xl">Nutrition · per 100 g (uncooked)</h3>
             <dl className="mt-4 grid grid-cols-4 gap-4 text-sm">
-              {Object.entries(product.nutrition).map(([k, v]) => (
+              {(Object.entries(product.nutrition) as [string, string][]).map(([k, v]) => (
                 <div key={k}>
                   <dt className="text-xs uppercase tracking-wider text-muted-foreground">{k}</dt>
                   <dd className="mt-1 font-serif text-xl text-foreground">{v}</dd>
