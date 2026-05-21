@@ -5,20 +5,17 @@
 @custom-variant dark (&:is(.dark *));
 
 /*
- * Design system definition.
- *
- * The @theme inline block maps CSS custom properties to Tailwind utility
- * classes (e.g. --color-primary -> bg-primary, text-primary).
- *
- * The :root and .dark blocks define the actual color values using oklch.
- * All colors MUST use oklch format.
- *
- * To add a new semantic color:
- * 1. Add the variable to :root (light value) and .dark (dark value)
- * 2. Register it in @theme inline as --color-<name>: var(--<name>)
+ * Grainery — Premium rice wholesale design system.
+ * Warm Sand palette + DM Serif Display / Fira Sans typography.
+ * All colors in oklch.
  */
 
+@import url("https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Fira+Sans:wght@300;400;500;600;700&display=swap");
+
 @theme inline {
+  --font-serif: "DM Serif Display", ui-serif, Georgia, serif;
+  --font-sans: "Fira Sans", ui-sans-serif, system-ui, sans-serif;
+
   --radius-sm: calc(var(--radius) - 4px);
   --radius-md: calc(var(--radius) - 2px);
   --radius-lg: var(--radius);
@@ -59,42 +56,61 @@
   --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
   --color-sidebar-border: var(--sidebar-border);
   --color-sidebar-ring: var(--sidebar-ring);
+
+  --color-cream: var(--cream);
+  --color-sand: var(--sand);
+  --color-clay: var(--clay);
+  --color-gold: var(--gold);
+  --color-leaf: var(--leaf);
 }
 
 :root {
-  --radius: 0.625rem;
-  --background: oklch(1 0 0);
-  --foreground: oklch(0.129 0.042 264.695);
+  --radius: 0.5rem;
+
+  /* Warm Sand palette */
+  --cream: oklch(0.985 0.008 80);        /* #faf8f5 */
+  --sand: oklch(0.945 0.013 75);         /* #f0ebe3 */
+  --clay: oklch(0.78 0.04 75);           /* #c9b99a */
+  --gold: oklch(0.72 0.12 75);           /* warm gold accent */
+  --leaf: oklch(0.5 0.08 145);           /* deep leaf green */
+
+  --background: var(--cream);
+  --foreground: oklch(0.25 0.02 60);     /* deep cocoa */
   --card: oklch(1 0 0);
-  --card-foreground: oklch(0.129 0.042 264.695);
+  --card-foreground: oklch(0.25 0.02 60);
   --popover: oklch(1 0 0);
-  --popover-foreground: oklch(0.129 0.042 264.695);
-  --primary: oklch(0.208 0.042 265.755);
-  --primary-foreground: oklch(0.984 0.003 247.858);
-  --secondary: oklch(0.968 0.007 247.896);
-  --secondary-foreground: oklch(0.208 0.042 265.755);
-  --muted: oklch(0.968 0.007 247.896);
-  --muted-foreground: oklch(0.554 0.046 257.417);
-  --accent: oklch(0.968 0.007 247.896);
-  --accent-foreground: oklch(0.208 0.042 265.755);
-  --destructive: oklch(0.577 0.245 27.325);
-  --destructive-foreground: oklch(0.984 0.003 247.858);
-  --border: oklch(0.929 0.013 255.508);
-  --input: oklch(0.929 0.013 255.508);
-  --ring: oklch(0.704 0.04 256.788);
-  --chart-1: oklch(0.646 0.222 41.116);
-  --chart-2: oklch(0.6 0.118 184.704);
-  --chart-3: oklch(0.398 0.07 227.392);
-  --chart-4: oklch(0.828 0.189 84.429);
-  --chart-5: oklch(0.769 0.188 70.08);
-  --sidebar: oklch(0.984 0.003 247.858);
-  --sidebar-foreground: oklch(0.129 0.042 264.695);
-  --sidebar-primary: oklch(0.208 0.042 265.755);
-  --sidebar-primary-foreground: oklch(0.984 0.003 247.858);
-  --sidebar-accent: oklch(0.968 0.007 247.896);
-  --sidebar-accent-foreground: oklch(0.208 0.042 265.755);
-  --sidebar-border: oklch(0.929 0.013 255.508);
-  --sidebar-ring: oklch(0.704 0.04 256.788);
+  --popover-foreground: oklch(0.25 0.02 60);
+  --primary: oklch(0.35 0.03 60);        /* rich cocoa */
+  --primary-foreground: var(--cream);
+  --secondary: var(--sand);
+  --secondary-foreground: oklch(0.3 0.025 60);
+  --muted: var(--sand);
+  --muted-foreground: oklch(0.45 0.02 60);
+  --accent: var(--gold);
+  --accent-foreground: oklch(0.2 0.02 60);
+  --destructive: oklch(0.55 0.2 25);
+  --destructive-foreground: oklch(0.98 0 0);
+  --border: oklch(0.9 0.015 75);
+  --input: oklch(0.9 0.015 75);
+  --ring: var(--gold);
+  --chart-1: var(--gold);
+  --chart-2: var(--leaf);
+  --chart-3: var(--clay);
+  --chart-4: oklch(0.6 0.1 50);
+  --chart-5: oklch(0.4 0.05 60);
+  --sidebar: var(--cream);
+  --sidebar-foreground: oklch(0.25 0.02 60);
+  --sidebar-primary: var(--gold);
+  --sidebar-primary-foreground: oklch(0.2 0.02 60);
+  --sidebar-accent: var(--sand);
+  --sidebar-accent-foreground: oklch(0.25 0.02 60);
+  --sidebar-border: oklch(0.9 0.015 75);
+  --sidebar-ring: var(--gold);
+
+  --shadow-soft: 0 10px 30px -12px oklch(0.4 0.05 60 / 0.18);
+  --shadow-gold: 0 12px 32px -10px oklch(0.72 0.12 75 / 0.35);
+  --gradient-warm: linear-gradient(135deg, oklch(0.985 0.008 80), oklch(0.945 0.013 75));
+  --gradient-gold: linear-gradient(135deg, oklch(0.78 0.12 80), oklch(0.65 0.13 65));
 }
 
 .dark {
@@ -140,5 +156,22 @@
   body {
     background-color: var(--color-background);
     color: var(--color-foreground);
+    font-family: var(--font-sans);
+    -webkit-font-smoothing: antialiased;
   }
+
+  h1, h2, h3, h4 {
+    font-family: var(--font-serif);
+    font-weight: 400;
+    letter-spacing: -0.01em;
+  }
+}
+
+@layer utilities {
+  .font-serif { font-family: var(--font-serif); }
+  .font-sans { font-family: var(--font-sans); }
+  .shadow-soft { box-shadow: var(--shadow-soft); }
+  .shadow-gold { box-shadow: var(--shadow-gold); }
+  .bg-gradient-warm { background: var(--gradient-warm); }
+  .bg-gradient-gold { background: var(--gradient-gold); }
 }
