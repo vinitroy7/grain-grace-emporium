@@ -87,7 +87,7 @@ function ProductPage() {
           <div className="mt-7 rounded-2xl border border-border bg-card p-6">
             <p className="text-xs uppercase tracking-wider text-muted-foreground">Pack size</p>
             <div className="mt-3 flex flex-wrap gap-2">
-              {product.packs.map((s) => (
+              {product.packs.map((s: PackSize) => (
                 <button
                   key={s.label}
                   type="button"
